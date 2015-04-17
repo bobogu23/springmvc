@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="30 seconds" debug="false">
+	<!-- <property name="logRoot" value="/opt/logs/finance/cmember/" /> -->
+	<property name="logRoot" value="E:/opt/logs/test" />
+	<!-- appender -->
+	<appender name="CONSOLE-APPENDER" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder charset="UTF-8" />
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<Pattern>%d{HH:mm:ss.SSS} [%-5level] %logger{36}%n- [%X{traceId}] -
+				%msg%n</Pattern>
+		</layout>
+	</appender>
+
+	<appender name="DEFAULT-APPENDER"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<encoder charset="UTF-8" />
+		<file>${logRoot}default-all.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${logRoot}default-all.log.%d{yyyy-MM-dd}.zip
+			</fileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<Pattern>%d{HH:mm:ss.SSS} [%-5level] %logger{36}%n- [%X{traceId}] -
+				%msg%n</Pattern>
+		</layout>
+	</appender>
+
+	<appender name="ERROR-APPENDER"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<encoder charset="UTF-8" />
+		<file>${logRoot}common-error.log</file>
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>ERROR</level>
+			<onMatch>ACCEPT</onMatch>
+			<onMismatch>DENY</onMismatch>
+		</filter>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${logRoot}common-error.log.%d{yyyy-MM-dd}.zip
+			</fileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<Pattern>%d{HH:mm:ss.SSS} [%-5level] %logger{36}%n- [%X{traceId}] -
+				%msg%n</Pattern>
+		</layout>
+	</appender>
+
+	<appender name="DOMAINSERVICE-APPENDER"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<encoding>UTF-8</encoding>
+		<file>${logRoot}domainservice.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${logRoot}domainservice.log.%d{yyyy-MM-dd}.zip
+			</fileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>%d{HH:mm:ss.SSS} [%-5level] %logger{36}%n- [%X{traceId}] -
+				%msg%n</pattern>
+		</layout>
+	</appender>
+
+	<appender name="DAL-APPENDER"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<encoding>UTF-8</encoding>
+		<file>${logRoot}core-dal.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${logRoot}core-dal.log.%d{yyyy-MM-dd}.zip
+			</fileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>%d{HH:mm:ss.SSS} [%-5level] %logger{36}%n- [%X{traceId}] -
+				%msg%n</pattern>
+		</layout>
+	</appender>
+
+	<appender name="CLIENT-APPENDER"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<encoding>UTF-8</encoding>
+		<file>${logRoot}client-api.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${logRoot}ext-service.log.%d{yyyy-MM-dd}.zip
+			</fileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>%d{HH:mm:ss.SSS} [%-5level] %logger{36}%n- [%X{traceId}] -
+				%msg%n</pattern>
+		</layout>
+	</appender>
+
+	<appender name="INTEGRATION-APPENDER"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<encoding>UTF-8</encoding>
+		<file>${logRoot}ext-integration.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${logRoot}ext-integration.log.%d{yyyy-MM-dd}.zip
+			</fileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>%d{HH:mm:ss.SSS} [%-5level] %logger{36}%n- [%X{traceId}] -
+				%msg%n</pattern>
+		</layout>
+	</appender>
+
+	<!-- logger -->
+
+
+	<!-- dal -->
+	<logger name="org.mybatis">
+		<level value="debug" />
+		<appender-ref ref="DAL-APPENDER" />
+		<appender-ref ref="ERROR-APPENDER" />
+	</logger>
+	<logger name="java.sql">
+		<level value="debug" />
+		<appender-ref ref="DAL-APPENDER" />
+		<appender-ref ref="ERROR-APPENDER" />
+	</logger>
+
+	<logger name="com.gu.test.springmvc.service">
+		<level value="debug" />
+		<appender-ref ref="CONSOLE-APPENDER" />
+	</logger>
+
+	<!-- root -->
+	<root level="debug">
+		<appender-ref ref="CONSOLE-APPENDER" />
+		<!-- <appender-ref ref="DEFAULT-APPENDER" /> <appender-ref ref="ERROR-APPENDER" 
+			/> -->
+	</root>
+</configuration>  

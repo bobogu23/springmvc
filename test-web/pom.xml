@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>com.gu.test</groupId>
 		<artifactId>springmvc</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
+		<version>${root.version}</version>
 	</parent>
 
 	<artifactId>test-web</artifactId>

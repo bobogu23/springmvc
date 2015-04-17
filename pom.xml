@@ -4,29 +4,27 @@
 	<groupId>com.gu.test</groupId>
 	<artifactId>springmvc</artifactId>
 	<packaging>pom</packaging>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>${root.version}</version>
 	<name>springmvc Maven Webapp</name>
 	<url>http://maven.apache.org</url>
 	<modules>
 		<module>test-web</module>
+		<module>test-service</module>
 	</modules>
 
 	<properties>
+		<root.version>0.0.1-SNAPSHOT</root.version>
 		<org.springframework.version>3.2.8.RELEASE</org.springframework.version>
 		<servlet.api.version>2.2</servlet.api.version>
 		<jsp.api.version>2.2</jsp.api.version>
 		<jstl.version>1.2</jstl.version>
+		<slf4j.version>1.7.5</slf4j.version>
+		<junit.version>4.11</junit.version>
 		<!-- <org.springframework.version>4.0.2.RELEASE</org.springframework.version> -->
 	</properties>
 
 	<dependencyManagement>
 		<dependencies>
-			<dependency>
-				<groupId>junit</groupId>
-				<artifactId>junit</artifactId>
-				<version>3.8.1</version>
-				<scope>test</scope>
-			</dependency>
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-context</artifactId>
@@ -50,6 +48,11 @@
 				<version>${org.springframework.version}</version>
 				<scope>test</scope>
 			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-tx</artifactId>
+				<version>${org.springframework.version}</version>
+			</dependency>
 
 			<dependency>
 				<groupId>javax.servlet</groupId>
@@ -69,6 +72,17 @@
 				<artifactId>jstl</artifactId>
 				<version>${jstl.version}</version>
 				<scope>runtime</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-api</artifactId>
+				<version>${slf4j.version}</version>
+			</dependency>
+			<!--test -->
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>${junit.version}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
