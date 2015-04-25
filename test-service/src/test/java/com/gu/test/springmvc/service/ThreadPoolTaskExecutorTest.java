@@ -21,10 +21,15 @@ public class ThreadPoolTaskExecutorTest extends TestBaseService {
     public void testThreadPoolTaskExecutor() {
         taskExecutor.execute(new Runnable() {
             public void run() {
-                System.err.println("current thread name:" + Thread.currentThread().getName());
+                try {
+                    System.err.println("current thread name:" + Thread.currentThread().getName());
+                    Thread.currentThread().sleep(5000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
         });
         int activeCount = taskExecutor.getActiveCount();
-        logger.debug("x] - now threadpool active threads totalNum : " + activeCount);
+        System.err.println("[x] - now threadpool active threads totalNum : " + activeCount);
     }
 }

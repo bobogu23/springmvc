@@ -9,27 +9,49 @@
 		http://www.springframework.org/schema/context/spring-context-3.0.xsd
 		http://www.springframework.org/schema/mvc   
 		http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
-	<bean
-		class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping" />
-	<!-- HandlerAdapter -->
-	<bean
-		class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter" />
+	<!-- <bean class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping" 
+		/> HandlerAdapter <bean class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter" 
+		/> ViewResolver <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"> 
+		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView" 
+		/> <property name="prefix" value="/WEB-INF/jsp/" /> <property name="suffix" 
+		value=".jsp" /> </bean> <bean id="helloWorldController" name="/hello" class="com.gu.test.springmvc.web.action.HelloWorldController" 
+		/> <bean id="helloWorldController1" name="/hello1" class="com.gu.test.springmvc.web.action.HelloWorldController" 
+		/> <bean id="helloWorldController2" name="/jsonTest" class="com.gu.test.springmvc.web.action.HelloWorldController" 
+		/> -->
 
-	<!-- ViewResolver -->
+
+	<mvc:annotation-driven />
+	<mvc:default-servlet-handler />
 	<bean
-		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="viewClass"
-			value="org.springframework.web.servlet.view.JstlView" />
-		<property name="prefix" value="/WEB-INF/jsp/" />
-		<property name="suffix" value=".jsp" />
+		class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+		<property name="messageConverters">
+			<list>
+				<bean
+					class="org.springframework.http.converter.StringHttpMessageConverter">
+					<property name="supportedMediaTypes">
+						<list>
+							<value>
+								text/html;charset=UTF-8
+							</value>
+						</list>
+					</property>
+				</bean>
+				<!-- 启动JSON格式的配置 -->
+				<bean id="jacksonMessageConverter"
+					class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
+					<!-- 解决 HttpMediaTypeNotAcceptableException: Could not find acceptable 
+						representation -->
+					<property name="supportedMediaTypes">
+						<list>
+							<value>application/json;charset=UTF-8</value>
+						</list>
+					</property>
+				</bean>
+			</list>
+		</property>
 	</bean>
 
-	<bean id="helloWorldController" name="/hello"
-		class="com.gu.test.springmvc.web.action.HelloWorldController" />
-	<bean id="helloWorldController1" name="/hello1"
-		class="com.gu.test.springmvc.web.action.HelloWorldController" />
-	<bean id="hello2" name="/hello2"
-		class="com.gu.test.springmvc.web.action.HelloWorldAbstractController" >
-		<property name="supportedMethods" value="POST"></property>
-		</bean>
+
+	<context:component-scan base-package="com.gu.test.springmvc.web.action" />
+
 </beans>

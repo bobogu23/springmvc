@@ -3,7 +3,7 @@
 	<parent>
 		<artifactId>springmvc</artifactId>
 		<groupId>com.gu.test</groupId>
-		<version>${root.version}</version>
+        <version>0.0.1-SNAPSHOT</version>
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
 
@@ -31,17 +31,14 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-tx</artifactId>
-			<version>${org.springframework.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
-			<version>${slf4j.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.gu.test</groupId>
 			<artifactId>test-web</artifactId>
-			<version>${root.version}</version>
 		</dependency>
 	</dependencies>
 </project>
